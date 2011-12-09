@@ -1,0 +1,5 @@
+Base project for Backbone. by Tanaki. <nico@nicolaspigelet.com>
+
+NB : 
+- you need to configure a localhost to be able to load the templates.
+- I'm using twitter bootstrap for basic CSS (http://twitter.github.com/bootstrap)
