@@ -4,3 +4,7 @@ NB :
 - you need to configure a localhost to be able to load the templates.
 - I'm using twitter bootstrap for basic CSS (http://twitter.github.com/bootstrap)
 - I rewrite http://github.com/Gazler/Underscore-Template-Loader as a JQuery plugin
+
+Roadmap :
+- Add an example of Backbone Model and Collection
+- Integrate a unit test tool (QUnit / Jasmine)
