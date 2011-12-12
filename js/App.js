@@ -1,14 +1,14 @@
 // Create Namespace
-var NS = {};
+var NS = window.NS || {};
 
 /* EVENT MANAGER */
-NS.EventManager = $({});
+NS.EventManager = NS.EventManager || $({});
 
 /* MODELS */
-NS.Model = {};
+NS.Model = NS.Model || {};
 
 /* VIEWS */
-NS.View = {};
+NS.View = NS.View || {};
 
 /*
  * EVENTS
