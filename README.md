@@ -1,7 +1,7 @@
-### Base project for Backbone. by Tanaki. <nico@nicolaspigelet.com>
+#### Base project for Backbone. by Tanaki. <nico@nicolaspigelet.com>
 
-### In there you'll find a simple website, using a Router, a Model, a Collection and a couple of Views.
-### It's all really straight forward and can be modified as you want.
+In there you'll find a simple website, using a Router, a Model, a Collection and a couple of Views.
+It's all really straight forward and can be modified as you want.
 
 #### NB : 
 *- you need to configure a localhost to be able to load the templates.
