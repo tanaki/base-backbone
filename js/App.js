@@ -20,5 +20,8 @@ NS.Events = {
 };
 
 $(window).ready(function(){
-	var controller = new NS.Controller();
+	
+	var router = new NS.Router();
+	Backbone.history.start();
+	
 });
