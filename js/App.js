@@ -4,6 +4,9 @@ var NS = window.NS || {};
 /* EVENT MANAGER */
 NS.EventManager = NS.EventManager || $({});
 
+/* COLLECTIONS */
+NS.Collection = NS.Collection || {};
+
 /* MODELS */
 NS.Model = NS.Model || {};
 

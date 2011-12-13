@@ -1,3 +1,10 @@
 <div class="span14">
-	Home Page <%= param %>
+	<h4>Home Page <%= message %></h4>
+	<ul>
+		<% _.each(items, function(item){ %>
+			<li>
+				<a href="#<%= item.get('id') %>"><%= item.get("title") %></a>
+			</li>
+		<% }); %>
+	</ul>
 </div>
