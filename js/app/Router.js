@@ -56,7 +56,9 @@ NS.Router = Backbone.Router.extend({
 	 */
 	_init : function() {
 		this.isInit = true;
+		
 		this._initEventHandlers();
+		this._initNav();
 	},
 	
 	/*
@@ -72,6 +74,16 @@ NS.Router = Backbone.Router.extend({
 		NS.EventManager.bind(this.eventHandlers);
 	},
 	
+	/*
+	 * init navigation links
+	 * @private
+	 */
+	_initNav : function() {
+		$(".nav a, .brand").click(function(e){
+			e.preventDefault();
+			NS.AppRouter.navigate($(this).attr("href"), true);
+		});	
+	},
 	
 	/********
 	 * EVENT HANDLERS

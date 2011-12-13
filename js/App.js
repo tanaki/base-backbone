@@ -29,9 +29,4 @@ $(window).ready(function(){
 	NS.AppRouter = new NS.Router();
 	Backbone.history.start({ pushState : true });
 	
-	$(".nav a, .brand").click(function(e){
-		e.preventDefault();
-		NS.AppRouter.navigate($(this).attr("href"), true);
-	});
-	
 });
