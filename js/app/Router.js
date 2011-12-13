@@ -6,7 +6,25 @@ NS.Router = Backbone.Router.extend({
 	eventHandlers : {},
 	
 	routes : {
+		"about" : "_aboutAction",
+		"contact" : "_contactAction",
 		"*actions" : "_defaultAction"
+	},
+	
+	/*
+	 * about Action
+	 * @private
+	 */
+	_aboutAction : function() {
+		this._displayPage( NS.Events.INIT_ABOUT );
+	},
+	
+	/*
+	 * contact Action
+	 * @private
+	 */
+	_contactAction : function() {
+		this._displayPage( NS.Events.INIT_CONTACT );
 	},
 	
 	/*
@@ -14,8 +32,22 @@ NS.Router = Backbone.Router.extend({
 	 * @private
 	 */
 	_defaultAction : function() {
+		this._displayPage( NS.Events.APP_READY );
+	},
+	
+	/*
+	 * display Page
+	 * @private
+	 */
+	_displayPage : function ( callbackEvent ) {
+		
 		if ( !this.isInit ) this._init();
-		NS.EventManager.trigger( NS.Events.APP_READY );
+		
+		if ( this.currentView ) {
+			this.currentView.hide( callbackEvent );
+		} else {
+			NS.EventManager.trigger( callbackEvent );
+		}
 	},
 	
 	/*
@@ -32,7 +64,11 @@ NS.Router = Backbone.Router.extend({
 	 * @private
 	 */
 	_initEventHandlers : function() {
+		
 		this.eventHandlers[NS.Events.APP_READY] = this._appReady;
+		this.eventHandlers[NS.Events.INIT_CONTACT] = this._initContact;
+		this.eventHandlers[NS.Events.INIT_ABOUT] = this._initAbout;
+		
 		NS.EventManager.bind(this.eventHandlers);
 	},
 	
@@ -42,8 +78,28 @@ NS.Router = Backbone.Router.extend({
 	 */
 		
 	_appReady : function() {
+		
 		var mainView = new NS.View.Main();
 		mainView.render();
+		this.currentView = mainView;
+		
+	},
+		
+	_initContact : function() {
+		
+		var contactView = new NS.View.Contact();
+		contactView.render();
+		this.currentView = contactView;
+		
+	},
+		
+	_initAbout : function() {
+		
+		console.log("init about");
+		var aboutView = new NS.View.About();
+		aboutView.render();
+		this.currentView = aboutView;
+		
 	}
 	
 	

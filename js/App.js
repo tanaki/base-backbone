@@ -18,13 +18,20 @@ NS.View = NS.View || {};
  */
 
 NS.Events = {
-    APP_READY : "APP_READY"
+    APP_READY : "APP_READY",
+    INIT_ABOUT : "INIT_ABOUT",
+    INIT_CONTACT : "INIT_CONTACT"
 	
 };
 
 $(window).ready(function(){
 	
-	var router = new NS.Router();
-	Backbone.history.start();
+	NS.AppRouter = new NS.Router();
+	Backbone.history.start({ pushState : true });
+	
+	$(".nav a, .brand").click(function(e){
+		e.preventDefault();
+		NS.AppRouter.navigate($(this).attr("href"), true);
+	});
 	
 });

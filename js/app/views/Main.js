@@ -4,6 +4,11 @@ NS.View.Main = Backbone.View.extend({
 	mainTpl : null,
 	collection : null,
 	
+	hide : function (callbackEvent) {
+		$(this.el).hide();
+		if (callbackEvent) NS.EventManager.trigger(callbackEvent);
+	},
+	
 	render : function() {
 		this._loadTemplate();
 	},
