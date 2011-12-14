@@ -9,14 +9,12 @@ NS.View.About = Backbone.View.extend({
 	},
 	
 	render : function() {
-		console.log("aboutview::render");
 		this._loadTemplate();
 	},
 	
 	_loadTemplate : function() {
 		
 		var self = this;
-		console.log("aboutview::loadtemplate");
 		$.loadTemplate({
 			"template" : "template_about",
 			"file" : "templates/about.html",

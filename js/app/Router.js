@@ -107,7 +107,6 @@ NS.Router = Backbone.Router.extend({
 		
 	_initAbout : function() {
 		
-		console.log("init about");
 		var aboutView = new NS.View.About();
 		aboutView.render();
 		this.currentView = aboutView;
