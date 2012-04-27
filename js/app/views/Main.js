@@ -1,5 +1,5 @@
 
-NS.View.Contact = NS.View.Base.extend({
+NS.View.Main = NS.View.Base.extend({
 
 	classname : "home",
 	template_name : "template_main",

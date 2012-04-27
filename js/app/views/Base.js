@@ -11,6 +11,7 @@ NS.View.Base = Backbone.View.extend({
 	
 	hide : function (callbackEvent) {
 		$(this.el).hide();
+		console.log("hide");
 		if (callbackEvent) NS.EventManager.trigger(callbackEvent);
 	},
 	

@@ -45,7 +45,7 @@ NS.Router = Backbone.Router.extend({
 			this._init( callbackEvent );
 			return;
 		}
-
+		
 		if ( this.currentView ) {
 			this.currentView.hide( callbackEvent );
 		} else {
@@ -90,7 +90,7 @@ NS.Router = Backbone.Router.extend({
 	 */
 	_initNav : function() {
 		// TODO use backbone events ?
-		$("body").delegate(".nav a, .brand", "click", function(e){
+		$("body").delegate(".nav a, .brand", "click", function(e) {
 			e.preventDefault();
 			NS.AppRouter.navigate($(this).attr("href"), true);
 		});
@@ -109,7 +109,7 @@ NS.Router = Backbone.Router.extend({
 				view = new NS.View.Main({
 					collection : NS.Data.Items
 				});
-				NS.AppRouter.navigate("/");
+				// NS.AppRouter.navigate("/");
 			break;
 
 			case NS.Events.SHOW_ABOUT :
@@ -121,7 +121,7 @@ NS.Router = Backbone.Router.extend({
 			break;
 
 		}
-
+		
 		view.render();
 		this.currentView = view;
 	}
