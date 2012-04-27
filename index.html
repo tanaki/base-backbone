@@ -1,63 +1,75 @@
 <!doctype html>
 <html>
 	<head>
+
 		<meta charset="utf-8" />
 		<title>Backbone Basic App</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-		<link rel="stylesheet" href="css/screen.css" />
-		
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
-		
-        <script type="text/javascript" src="js/lib/underscore-1.2.2.js"></script>
-        <script type="text/javascript" src="js/lib/backbone.js"></script>
-		<script type="text/javascript" src="js/lib/jquery.loadTemplate.js"></script>
-		
-		<script type="text/javascript" src="js/App.js"></script>
-		
-		<script type="text/javascript" src="js/app/Router.js"></script>
-		
-		<script type="text/javascript" src="js/app/models/Item.js"></script>
-		<script type="text/javascript" src="js/app/collections/ItemCollection.js"></script>
-		
-		<script type="text/javascript" src="js/app/views/Main.js"></script>
-		<script type="text/javascript" src="js/app/views/About.js"></script>
-		<script type="text/javascript" src="js/app/views/Contact.js"></script>
+		<link rel="stylesheet" href="styles/libs/bootstrap.min.css">
+		<link rel="stylesheet" href="styles/libs/bootstrap-responsive.min.css">
+		<link rel="stylesheet" type="text/css" href="styles/css/screen.css">
 
 	</head>
 	<body>
-		<div class="topbar">
-			<div class="fill">
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="/">Home</a>
-					<ul class="nav">
-						<li>
-							<a href="about">About</a>
-						</li>
-						<li>
-							<a href="contact">Contact</a>
-						</li>
-					</ul>
+					<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<div class="nav-collapse">
+						<ul class="nav">
+							<li>
+								<a href="/">Home</a>
+							</li>
+							<li>
+								<a href="about">About</a>
+							</li>
+							<li>
+								<a href="contact">Contact</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="container">
 
-			<div class="content">
+		<div class="container">
+			<section>
 				<div class="page-header">
-					<h1>Title <small>sub title</small></h1>
+					<h1>Title <small>subtitle</small></h1>
 				</div>
 				<div class="row main-content">
-					
-				</div>
-			</div>
+					Main Content
+				</div><!-- /.row -->
+			</section>
 
 			<footer>
 				<p>&copy; 2011 - Footer</p>
 			</footer>
 
 		</div>
+
+		<!-- LIBS -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+		<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/lib/underscore-1.2.2.js"></script>
+        <script type="text/javascript" src="js/lib/backbone.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.loadTemplate.js"></script>
 		
+		<!-- SCRIPTS -->
+		<script type="text/javascript" src="js/App.js"></script>
+		<script type="text/javascript" src="js/app/Router.js"></script>
+		<script type="text/javascript" src="js/app/models/Item.js"></script>
+		<script type="text/javascript" src="js/app/collections/ItemCollection.js"></script>
+		<script type="text/javascript" src="js/app/views/Main.js"></script>
+		<script type="text/javascript" src="js/app/views/About.js"></script>
+		<script type="text/javascript" src="js/app/views/Contact.js"></script>
+
 	</body>
 </html>
