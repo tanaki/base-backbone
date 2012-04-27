@@ -8,6 +8,13 @@ NS.Model.Item = Backbone.Model.extend({
 	
 	initialize: function(){
 
+	},
+
+	parse : function( data ){
+		
+		this.id = data.id;
+		this.title = data.title;
+
+		return this;
 	}
-	
 });

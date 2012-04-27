@@ -1,67 +1,8 @@
 
-NS.View.Main = Backbone.View.extend({
-	el : ".main-content",
-	mainTpl : null,
-	collection : null,
-	
-	hide : function (callbackEvent) {
-		$(this.el).hide();
-		if (callbackEvent) NS.EventManager.trigger(callbackEvent);
-	},
-	
-	render : function() {
-		this._loadTemplate();
-	},
-	
-	_loadTemplate : function() {
-		
-		var self = this;
-		$.loadTemplate({
-			"template" : "template_main",
-			"file" : "templates/main.html",
-			"callback" : function(data){
-				self.mainTpl = data;
-				self._loadData();
-			},
-			"noStorage" : true // util for debug
-		});
-		
-	},
-	
-	_loadData : function() {
-		
-		var self = this;
-		this.collection = new NS.Collection.ItemCollection();
-		
-		$.ajax({
-			
-			dataType : 'json',
-			url: "/data/data.json",
-			
-			success : function(response){
-				
-				$.each(response.items, function(i, el){
-					self.collection.add(new NS.Model.Item({
-						id: el.id,
-						title: el.title
-					}));
-				});
-				
-				self._display();
-			}
-		});
+NS.View.Contact = NS.View.Base.extend({
 
-		
-	},
+	classname : "home",
+	template_name : "template_main",
+	template_url : "/templates/main.html"
 	
-	_display : function(data) {
-		var 
-			params = {
-				message : "Welcome !",
-				items : this.collection.models
-			},
-			tpl = _.template(this.mainTpl);
-		
-		$(this.el).html( tpl(params) );
-	}
 });

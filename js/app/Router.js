@@ -16,7 +16,7 @@ NS.Router = Backbone.Router.extend({
 	 * @private
 	 */
 	_aboutAction : function() {
-		this._displayPage( NS.Events.INIT_ABOUT );
+		this._displayPage( NS.Events.SHOW_ABOUT );
 	},
 	
 	/*
@@ -24,7 +24,7 @@ NS.Router = Backbone.Router.extend({
 	 * @private
 	 */
 	_contactAction : function() {
-		this._displayPage( NS.Events.INIT_CONTACT );
+		this._displayPage( NS.Events.SHOW_CONTACT );
 	},
 	
 	/*
@@ -39,14 +39,17 @@ NS.Router = Backbone.Router.extend({
 	 * display Page
 	 * @private
 	 */
-	_displayPage : function ( callbackEvent ) {
-		
-		if ( !this.isInit ) this._init();
-		
+	 _displayPage : function ( callbackEvent, slug ) {
+
+		if ( !this.isInit ) {
+			this._init( callbackEvent );
+			return;
+		}
+
 		if ( this.currentView ) {
 			this.currentView.hide( callbackEvent );
 		} else {
-			NS.EventManager.trigger( callbackEvent );
+			NS.EventManager.trigger( callbackEvent, slug );
 		}
 	},
 	
@@ -54,11 +57,18 @@ NS.Router = Backbone.Router.extend({
 	 * init app
 	 * @private
 	 */
-	_init : function() {
+	_init : function( callbackEvent ) {
 		this.isInit = true;
 		
 		this._initEventHandlers();
 		this._initNav();
+
+		// Initial data call
+		var self = this;
+		NS.Data.Items = new NS.Collection.ItemCollection();
+		NS.Data.Items.fetch().success(function(){
+			self._displayPage( callbackEvent );
+		});
 	},
 	
 	/*
@@ -67,9 +77,9 @@ NS.Router = Backbone.Router.extend({
 	 */
 	_initEventHandlers : function() {
 		
-		this.eventHandlers[NS.Events.APP_READY] = this._appReady;
-		this.eventHandlers[NS.Events.INIT_CONTACT] = this._initContact;
-		this.eventHandlers[NS.Events.INIT_ABOUT] = this._initAbout;
+		this.eventHandlers[NS.Events.APP_READY] = this._show;
+		this.eventHandlers[NS.Events.SHOW_CONTACT] = this._show;
+		this.eventHandlers[NS.Events.SHOW_ABOUT] = this._show;
 		
 		NS.EventManager.bind(this.eventHandlers);
 	},
@@ -79,39 +89,41 @@ NS.Router = Backbone.Router.extend({
 	 * @private
 	 */
 	_initNav : function() {
-		$(".nav a, .brand").click(function(e){
+		// TODO use backbone events ?
+		$("body").delegate(".nav a, .brand", "click", function(e){
 			e.preventDefault();
 			NS.AppRouter.navigate($(this).attr("href"), true);
-		});	
+		});
 	},
 	
 	/********
 	 * EVENT HANDLERS
 	 */
-		
-	_appReady : function() {
-		
-		var mainView = new NS.View.Main();
-		mainView.render();
-		this.currentView = mainView;
-		
-	},
-		
-	_initContact : function() {
-		
-		var contactView = new NS.View.Contact();
-		contactView.render();
-		this.currentView = contactView;
-		
-	},
-		
-	_initAbout : function() {
-		
-		var aboutView = new NS.View.About();
-		aboutView.render();
-		this.currentView = aboutView;
-		
+	_show : function( e, slug ) {
+
+		var view;
+
+		switch ( e.type ) {
+
+			case NS.Events.APP_READY :
+				view = new NS.View.Main({
+					collection : NS.Data.Items
+				});
+				NS.AppRouter.navigate("/");
+			break;
+
+			case NS.Events.SHOW_ABOUT :
+				view = new NS.View.About();
+			break;
+
+			case NS.Events.SHOW_CONTACT :
+				view = new NS.View.Contact();
+			break;
+
+		}
+
+		view.render();
+		this.currentView = view;
 	}
-	
 	
 });

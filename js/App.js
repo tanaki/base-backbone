@@ -13,20 +13,19 @@ NS.Model = NS.Model || {};
 /* VIEWS */
 NS.View = NS.View || {};
 
+/* DATA */
+NS.Data = NS.Data || {};
+
 /*
  * EVENTS
  */
-
 NS.Events = {
     APP_READY : "APP_READY",
-    INIT_ABOUT : "INIT_ABOUT",
-    INIT_CONTACT : "INIT_CONTACT"
-	
+    SHOW_ABOUT : "SHOW_ABOUT",
+    SHOW_CONTACT : "SHOW_CONTACT"
 };
 
 $(window).ready(function(){
-	
 	NS.AppRouter = new NS.Router();
 	Backbone.history.start({ pushState : true });
-	
 });
