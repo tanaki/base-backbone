@@ -1,7 +1,7 @@
 
 NS.View.Base = Backbone.View.extend({
 
-	el : ".content",
+	el : ".main-content",
 	tpl : null,
 	template_name : "",
 	template_url : "",
@@ -10,9 +10,9 @@ NS.View.Base = Backbone.View.extend({
 	slug : "",
 	
 	hide : function (callbackEvent) {
-		$(this.el).hide();
-		console.log("hide");
-		if (callbackEvent) NS.EventManager.trigger(callbackEvent);
+		$(this.el).fadeOut( 500, function(){
+			if (callbackEvent) NS.EventManager.trigger(callbackEvent);
+		});
 	},
 	
 	render : function() {
@@ -29,7 +29,7 @@ NS.View.Base = Backbone.View.extend({
 				self.tpl = data;
 				self._display();
 			},
-			"noStorage" : true // util for debug
+			"noStorage" : false // set true for debug
 		});
 		
 	},
@@ -46,5 +46,6 @@ NS.View.Base = Backbone.View.extend({
 		
 		$("body").attr("class", "").addClass(this.classname);
 		$(this.el).html( tpl(params) );
+		$(this.el).fadeIn( 500 );
 	}
 });

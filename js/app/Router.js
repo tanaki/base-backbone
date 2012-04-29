@@ -2,7 +2,6 @@
 NS.Router = Backbone.Router.extend({
 	
 	isInit : false,
-	currentView : null,
 	eventHandlers : {},
 	
 	routes : {
@@ -46,8 +45,8 @@ NS.Router = Backbone.Router.extend({
 			return;
 		}
 		
-		if ( this.currentView ) {
-			this.currentView.hide( callbackEvent );
+		if ( NS.View.Current ) {
+			NS.View.Current.hide( callbackEvent );
 		} else {
 			NS.EventManager.trigger( callbackEvent, slug );
 		}
@@ -92,7 +91,9 @@ NS.Router = Backbone.Router.extend({
 		// TODO use backbone events ?
 		$("body").delegate(".nav a, .brand", "click", function(e) {
 			e.preventDefault();
-			NS.AppRouter.navigate($(this).attr("href"), true);
+			var targetLocation = $(this).attr("href");
+			if ( window.location.pathname == targetLocation ) return;
+			NS.AppRouter.navigate( targetLocation, true );
 		});
 	},
 	
@@ -106,24 +107,34 @@ NS.Router = Backbone.Router.extend({
 		switch ( e.type ) {
 
 			case NS.Events.APP_READY :
-				view = new NS.View.Main({
-					collection : NS.Data.Items
-				});
-				// NS.AppRouter.navigate("/");
+				if ( !NS.Page.Home ) {
+					NS.Page.Home = new NS.View.Main({
+						collection : NS.Data.Items
+					});
+				}
+				view = NS.Page.Home;
 			break;
 
 			case NS.Events.SHOW_ABOUT :
-				view = new NS.View.About();
+				if ( !NS.Page.About ) {
+					NS.Page.About = new NS.View.About();
+				}
+				view = NS.Page.About;
 			break;
 
 			case NS.Events.SHOW_CONTACT :
-				view = new NS.View.Contact();
+				if ( !NS.Page.Contact ) {
+					NS.Page.Contact = new NS.View.Contact();
+				}
+				view = NS.Page.Contact;
 			break;
 
 		}
 		
-		view.render();
-		this.currentView = view;
+		if ( view ) {
+			view.render();
+			NS.View.Current = view;
+		}
 	}
 	
 });
