@@ -1,3 +1,9 @@
+#### This project has moved to bitbucket and has been updated to use with Grunt 0.4
+
+(http://bitbucket.org/nicopigelet/grunt-init-jsproject and http://bitbucket.org/nicopigelet/grunt-init-backbone)
+
+
+
 #### Base project for Backbone. by Tanaki. <nico@nicolaspigelet.com>
 
 In there you'll find a simple website, using a Router, a Model, a Collection and a couple of Views.
